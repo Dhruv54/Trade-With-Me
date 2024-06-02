@@ -1,8 +1,18 @@
 import React from 'react'
 
-const History = () => {
+const History = (user) => {
   return (
-    <div>History</div>
+    <>
+    <div>
+      {user && user.user.value ?
+        (
+          <div>history</div>
+        ) : (
+          <div>please login</div>
+        )
+      }
+    </div>
+  </>
   )
 }
 

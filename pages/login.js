@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Router, { useRouter } from 'next/router';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
 
 const Login = () => {
     const router = useRouter()
@@ -38,7 +39,7 @@ const Login = () => {
             // Store token in localStorage
             localStorage.setItem('token', data.token);
             setTimeout(() => {
-                router.push('http://localhost:3000/home')
+                router.push('http://localhost:3000')
             }, 2000);
           } else {
             console.error('login failed:', response.statusText);
@@ -125,6 +126,11 @@ const Login = () => {
                             >
                                 Sign in
                             </button>
+                            <div className="text-sm">
+                                <Link href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                    Create New Account
+                                </Link>
+                            </div>
                         </div>
                     </form>
                 </div>

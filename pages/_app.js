@@ -52,7 +52,7 @@ export default function App({ Component, pageProps }) {
         onLoaderFinished={() => setProgress(0)}
       />
       <Navbar user={user} key={key} logout={logout} />
-      <Component globalAccessToken={globalAccessToken} setGlobalToken={setGlobalToken} {...pageProps} />
+      <Component user={user} globalAccessToken={globalAccessToken} setGlobalToken={setGlobalToken} {...pageProps} />
       <Footer />
     </>
   )

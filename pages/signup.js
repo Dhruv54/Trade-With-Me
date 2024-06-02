@@ -2,8 +2,11 @@ import React from 'react'
 import { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/router';
 
 const Signup = () => {
+
+    const router = useRouter()
 
     const [formData, setFormData] = useState({
         username: '',
@@ -35,6 +38,7 @@ const Signup = () => {
             const data = await response.json();
             console.log('Signup successful:', data);
             toast.success('Signup successful');
+            router.push('/login');
           } else {
             console.error('Signup failed:', response.statusText);
             toast.error('Signup failed');

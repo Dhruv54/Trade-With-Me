@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-
-const Home = ({setGlobalToken}) => {
+const Home = ({user,setGlobalToken}) => {
   const router = useRouter()
 
   const [fyersurl, setFyersUrl] = useState(null);
@@ -12,21 +13,28 @@ const Home = ({setGlobalToken}) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:3000/api/getfyersurl', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setFyersUrl(data.redirecturl);
-      } else {
-        console.error('Fyers login failed:', response.statusText);
+    if(user.value)
+    {
+      try {
+        const response = await fetch('http://localhost:3000/api/getfyersurl', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setFyersUrl(data.redirecturl);
+        } else {
+          console.error('Fyers login failed:', response.statusText);
+          toast.error('Fyers login failed');
+        }
+      } catch (error) {
+        console.error('Error during Fyers login', error);
+        toast.error('Error during Fyers login');
       }
-    } catch (error) {
-      console.error('Error during Fyers login', error);
+    }else{
+      toast.error('Please Login Again');
     }
   };
 
@@ -64,6 +72,8 @@ const Home = ({setGlobalToken}) => {
   };
 
   return (
+    <>
+    <ToastContainer position="top-left" />
     <div className="mainbg relative overflow-hidden">
       <Image src="/bg.jpg" alt="Background Image" layout="fill" objectFit="cover" className="object-cover" quality={75} priority={true} />
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white font-bold mb-20">
@@ -92,6 +102,7 @@ const Home = ({setGlobalToken}) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
