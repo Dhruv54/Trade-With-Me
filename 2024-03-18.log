@@ -1,0 +1,7 @@
+{"level":"error","datetime":"2024-03-18T16:31:57.574Z","message":"getHistory response","data":{"Error":{"code":-16,"message":"Could not authenticate the user","s":"error"},"inputs":{"symbol":"NSE:NIFTY50-INDEX","resolution":"D","date_format":"1","range_from":"2024-03-14","range_to":"2024-03-15","cont_flag":"1"}},"functionName":"getHistory"}
+{"level":"error","datetime":"2024-03-18T18:58:19.883Z","message":"get_profile response","data":{"s":"error","code":-8,"message":"Your token has expired. Please generate a token"},"functionName":"get_profile"}
+{"level":"error","datetime":"2024-03-18T19:43:15.262Z","message":"get_profile response","data":{"s":"error","code":-17,"message":"Could not authenticate the user"},"functionName":"get_profile"}
+{"level":"error","datetime":"2024-03-18T19:43:45.150Z","message":"get_profile response","data":{"s":"error","code":-17,"message":"Could not authenticate the user"},"functionName":"get_profile"}
+{"level":"error","datetime":"2024-03-18T19:44:15.208Z","message":"get_profile response","data":{"s":"error","code":-17,"message":"Could not authenticate the user"},"functionName":"get_profile"}
+{"level":"error","datetime":"2024-03-18T19:46:35.779Z","message":"get_profile response","data":{"s":"error","code":-17,"message":"Could not authenticate the user"},"functionName":"get_profile"}
+{"level":"error","datetime":"2024-03-18T19:48:39.686Z","message":"get_profile response","data":{"s":"error","code":-17,"message":"Could not authenticate the user"},"functionName":"get_profile"}

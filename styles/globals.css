@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.mainbg {
+    width: 100%;
+    height: 555px; /* Set the desired height */
+  }
+  
+
+  @keyframes slideLeft {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .animate-slide-left {
+    animation: slideLeft 1s ease forwards;
+  }
