@@ -9,6 +9,13 @@ function formatDate(date) {
     return `${year}-${month}-${day}`;
 }
 
+// Function to get the date N days ago
+function getDateNDaysAgo(days) {
+    const date = new Date();
+    date.setDate(date.getDate() - days);
+    return date;
+}
+
 async function readTextFromFileAndParseJSON(filePath) {
     try {
         const data = await fs.promises.readFile(filePath, 'utf8');
@@ -21,7 +28,7 @@ async function readTextFromFileAndParseJSON(filePath) {
 }
 
 // Define the API route handler
-const livemarket = async (req, res) => {
+const fetch1hr20Data = async (req, res) => {
     try {
         if (req.method === 'POST') {
             
@@ -39,27 +46,21 @@ const livemarket = async (req, res) => {
             console.log(jsonData);
             fyers.setAccessToken(jsonData.access_token);
 
-            // Get today's date
-            const today = new Date();
-            const formattedToday = formatDate(today);
+           // Get today's date and the date 3 days ago
+           const today = new Date();
+           const formattedToday = formatDate(today);
+           const threeDaysAgo = getDateNDaysAgo(3);
+           const formattedThreeDaysAgo = formatDate(threeDaysAgo);
 
-             
-            var inp={
-                "symbol":"BSE:SENSEX-INDEX",
-                "resolution":"1",
-                "date_format":"1",
-                "range_from":formattedToday,
-                "range_to":formattedToday,
-                "cont_flag":"1"
-            }
-            // var inp={
-            //     "symbol":"BSE:SENSEX-INDEX",
-            //     "resolution":"60",
-            //     "date_format":"1",
-            //     "range_from":"2024-05-29",
-            //     "range_to":"2024-05-29",
-            //     "cont_flag":"1"
-            // }
+           // Construct the input object dynamically
+           var inp = {
+               "symbol": "BSE:SENSEX-INDEX",
+               "resolution": "60",
+               "date_format": "1",
+               "range_from": formattedThreeDaysAgo,
+               "range_to": formattedToday,
+               "cont_flag": "1"
+           };
             // Make the API request to get market status
             const market_status = await fyers.getHistory(inp)
 
@@ -80,4 +81,5 @@ const livemarket = async (req, res) => {
 };
 
 // Export the handler function as the default export
-export default livemarket;
+export default fetch1hr20Data;
+
