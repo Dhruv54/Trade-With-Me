@@ -45,7 +45,7 @@ const Home = ({ user, globalAccessToken }) => {
 
     const fetch1hr20Data = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/1hrcandle', {
+            const response = await fetch('/api/1hrcandle', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const Home = ({ user, globalAccessToken }) => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/marketstatus', {
+            const response = await fetch('/api/marketstatus', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ const Home = ({ user, globalAccessToken }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             fetchData();
-        }, 1000); // 1000 milliseconds = 1 second
+        }, 60000); // 1000 milliseconds = 1 second
 
         return () => clearInterval(interval); // Clean up interval on component unmount
     }, []);
@@ -118,7 +118,7 @@ const Home = ({ user, globalAccessToken }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             fetch1hr20Data();
-        }, 10000); // 10000 milliseconds = 10 second
+        }, 3600000); // 10000 milliseconds = 10 second
 
         return () => clearInterval(interval); // Clean up interval on component unmount
     }, []);

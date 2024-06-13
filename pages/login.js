@@ -24,7 +24,7 @@ const Login = () => {
         console.log(formData)
         e.preventDefault();
         try {
-          const response = await fetch('http://localhost:3000/api/authenticateuser', {
+          const response = await fetch('api/authenticateuser', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const Login = () => {
             // Store token in localStorage
             localStorage.setItem('token', data.token);
             setTimeout(() => {
-                router.push('http://localhost:3000')
+                router.push('/')
             }, 2000);
           } else {
             console.error('login failed:', response.statusText);

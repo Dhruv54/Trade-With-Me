@@ -16,7 +16,7 @@ const Home = ({user,setGlobalToken}) => {
     if(user.value)
     {
       try {
-        const response = await fetch('http://localhost:3000/api/getfyersurl', {
+        const response = await fetch('/api/getfyersurl', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const Home = ({user,setGlobalToken}) => {
   const handleAuthenticate = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/api/fyerslogin', {
+      const response = await fetch('/api/fyerslogin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -26,7 +26,7 @@ const Signup = () => {
         console.log(formData)
         e.preventDefault();
         try {
-          const response = await fetch('http://localhost:3000/api/adduser', {
+          const response = await fetch('/api/adduser', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
