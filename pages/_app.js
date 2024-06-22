@@ -8,6 +8,8 @@ import LoadingBar from 'react-top-loading-bar'
 export default function App({ Component, pageProps }) {
 
   const [user, setuser] = useState({ value: null });
+  const [fyersuser, setfyersuser] = useState({ value: null });
+
   const [key, setkey] = useState(0);
   const router = useRouter();
   const [progress, setProgress] = useState(0)
@@ -29,13 +31,22 @@ export default function App({ Component, pageProps }) {
       setuser({ value: token });
       setkey(Math.random())
     }
+
+    const fyerstoken = localStorage.getItem('fyerstoken');
+    console.log(fyerstoken);
+    if (fyerstoken) {
+      setfyersuser({ value: fyerstoken });
+      setkey(Math.random())
+    }
   }, [router.query]);
 
   const logout = () => {
     console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
     localStorage.removeItem('token');
+    localStorage.removeItem('fyerstoken');
     setkey(Math.random())
     setuser({ value: null });
+    setfyersuser({ value: null });
   }
 
   const setGlobalToken = (access_token) => {
@@ -45,15 +56,14 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <LoadingBar
-        color='#f11946'
-        progress={progress}
-        waitingTime={400}
-        onLoaderFinished={() => setProgress(0)}
-      />
-      <Navbar user={user} key={key} logout={logout} />
-      <Component user={user} globalAccessToken={globalAccessToken} setGlobalToken={setGlobalToken} {...pageProps} />
-      <Footer />
+      <div className="min-h-screen flex flex-col">
+        <main className="flex-grow">
+          <LoadingBar color='#f11946' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)} />
+          <Navbar user={user} key={key} logout={logout}/>
+          <Component user={user} fyersuser={fyersuser} globalAccessToken={globalAccessToken} setGlobalToken={setGlobalToken} {...pageProps} />
+        </main>
+        <Footer />
+      </div>
     </>
   )
 }

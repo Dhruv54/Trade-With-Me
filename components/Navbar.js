@@ -32,7 +32,7 @@ const Navbar = ({ user, logout }) => {
           <div className="relative">
             {showDropdown && (
               <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-md z-10" onMouseOver={() => { setShowDropdown(true) }} onMouseLeave={() => { setShowDropdown(false) }}>
-                <Link href="/account" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">My Account</Link>
+                <Link href="/myAccount" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">My Account</Link>
                 <Link href="/orders" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Orders</Link>
                 <a onClick={logout} className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</a>
               </div>

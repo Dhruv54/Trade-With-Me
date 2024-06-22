@@ -22,7 +22,7 @@ const loginHandler = async (req, res) => {
             // If user is found and password matches
             if (user && userpassword == password) {
                 // Generate JWT token
-                const token = jwt.sign({ email: user.email,password:user.password }, 'jwtsecret', { expiresIn: '1h' });
+                const token = jwt.sign({ email: user.email,password:user.password }, 'jwtsecret', { expiresIn: '1d' });
 
                 // Send success response
                 res.status(200).json({ success: true,token, message: "Login successful" });

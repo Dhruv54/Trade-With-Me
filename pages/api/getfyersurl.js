@@ -3,9 +3,9 @@ const FyersAPI = require("fyers-api-v3").fyersModel;
 // Define the API route handler
 const getfyersurlHandler = async (req, res) => {
     try {
-        if (req.method === 'POST') {
+        if (req.method === 'GET') {
 
-            const fyers = new FyersAPI({ "path": "log", "enableLogging": true })
+            const fyers = new FyersAPI()
 
             fyers.setAppId(process.env.FYERS_APP_ID)
             fyers.setRedirectUrl(process.env.FYERS_REDIRECT_URL)

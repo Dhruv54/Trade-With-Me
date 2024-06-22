@@ -1,6 +1,8 @@
 const FyersAPI = require("fyers-api-v3").fyersModel;
 const fs = require('fs');
 
+const jwt = require('jsonwebtoken');
+
 async function writeTextToFileAsync(filePath, text) {
     try {
         await fs.promises.writeFile(filePath, text);
@@ -28,17 +30,10 @@ const fyersloginHandler = async (req, res) => {
 
                 writeTextToFileAsync(filePath, text);
 
+                // Generate JWT token
+                const fyerstoken = jwt.sign({ secret_key: process.env.FYERS_SECRET_KEY,auth_code:req.body.auth_code }, 'jwtsecret', { expiresIn: '1d' });
 
-            //     fs.writeFile(filePath, text, (err) => {
-            //       if (err) {
-            //           console.error('Error writing to file:', err);
-            //           return;
-            //       }
-            //       console.log('Text has been written to', filePath);
-            //   });
-
-                //const access_token = response.access_token
-                res.status(200).json({ success: true, response });
+                res.status(200).json({ success: true, fyerstoken,response });
               }).catch((error) => {
                 console.log(error)
               })

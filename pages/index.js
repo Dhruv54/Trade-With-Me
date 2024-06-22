@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Home = ({user,setGlobalToken}) => {
+const Home = (user) => {
   const router = useRouter()
 
   const [fyersurl, setFyersUrl] = useState(null);
@@ -17,7 +17,7 @@ const Home = ({user,setGlobalToken}) => {
     {
       try {
         const response = await fetch('/api/getfyersurl', {
-          method: 'POST',
+          method: 'GET',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -62,7 +62,13 @@ const Home = ({user,setGlobalToken}) => {
         const data = await response.json();
         setFyerAccessToken(data.response.access_token);
         setGlobalToken(fyerAccessToken);
-        router.push('/home');
+
+        // Store fyerstoken in localStorage
+        localStorage.setItem('fyerstoken', data.fyerstoken);
+        setTimeout(() => {
+          router.push('/home')
+        }, 2000);
+
       } else {
         console.error('Fyers login failed:', response.statusText);
       }
@@ -71,10 +77,20 @@ const Home = ({user,setGlobalToken}) => {
     }
   };
 
+  useEffect(() => {
+    // Function to run on component load
+    const fetchData = async () => {
+      if(user || user.user.value || user.fyersuser.value)
+        router.push('/home')
+    };
+
+    fetchData();
+}, []); // Empty dependency array ensures this runs only once
   return (
     <>
     <ToastContainer position="top-left" />
-    <div className="mainbg relative overflow-hidden">
+
+    {!user || !user.user.value || !user.fyersuser.value && <div className="mainbg relative overflow-hidden">
       <Image src="/bg.jpg" alt="Background Image" layout="fill" objectFit="cover" className="object-cover" quality={75} priority={true} />
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white font-bold mb-20">
         <h1 className="text-3xl lg:text-5xl mb-24">Trade With Dhruv</h1>
@@ -102,6 +118,7 @@ const Home = ({user,setGlobalToken}) => {
         </div>
       </div>
     </div>
+    }
     </>
   );
 };

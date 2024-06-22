@@ -1,7 +1,7 @@
 import { data } from 'autoprefixer';
 import React from 'react'
 import { useState, useEffect } from 'react';
-const Home = ({ user, globalAccessToken }) => {
+const Home = (user) => {
 
     const [marketStatus, setmarketStatus] = useState(null)
 
@@ -122,10 +122,11 @@ const Home = ({ user, globalAccessToken }) => {
 
         return () => clearInterval(interval); // Clean up interval on component unmount
     }, []);
+
     return (
         <>
             <div>
-                {user && user.value ?
+                {user && user.user.value && user.fyersuser.value?
                     (
                         <section className="text-gray-600 body-font">
                             <h1 className="text-center text-3xl font-bold mb-4">SENSEX : {currentPrice}</h1>

@@ -3,7 +3,7 @@ import React from 'react'
 const Position = (user) => {
   return (
     <>
-      {user && user.user.value ?
+      {user && user.user.value && user.fyersuser.value?
       (
         <section className="text-gray-600 body-font">
           <div className="container px-5 py-5 mx-auto">

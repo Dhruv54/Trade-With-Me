@@ -24,7 +24,7 @@ const Login = () => {
         console.log(formData)
         e.preventDefault();
         try {
-          const response = await fetch('api/authenticateuser', {
+          const response = await fetch('/api/authenticateuser', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
