@@ -13,7 +13,7 @@ const Home = (user) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    if(user.value)
+    if(user.user.value)
     {
       try {
         const response = await fetch('/api/getfyersurl', {
@@ -61,14 +61,11 @@ const Home = (user) => {
       if (response.ok) {
         const data = await response.json();
         setFyerAccessToken(data.response.access_token);
-        setGlobalToken(fyerAccessToken);
 
         // Store fyerstoken in localStorage
         localStorage.setItem('fyerstoken', data.fyerstoken);
-        setTimeout(() => {
-          router.push('/home')
-        }, 2000);
-
+        console.log('Fyers login success');
+        router.push('/home')
       } else {
         console.error('Fyers login failed:', response.statusText);
       }
@@ -77,15 +74,6 @@ const Home = (user) => {
     }
   };
 
-  useEffect(() => {
-    // Function to run on component load
-    const fetchData = async () => {
-      if(user || user.user.value || user.fyersuser.value)
-        router.push('/home')
-    };
-
-    fetchData();
-}, []); // Empty dependency array ensures this runs only once
   return (
     <>
     <ToastContainer position="top-left" />
