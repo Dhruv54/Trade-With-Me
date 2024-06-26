@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "crypto-js": "^4.2.0",
-    "fyers-api-v3": "^1.0.3",
+    "fyers-api-v3": "^1.2.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.1",
     "next": "14.1.3",
