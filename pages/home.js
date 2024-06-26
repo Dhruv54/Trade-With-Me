@@ -110,7 +110,7 @@ const Home = (user) => {
     useEffect(() => {
         const interval = setInterval(() => {
             fetchData();
-        }, 60000); // 1000 milliseconds = 1 second
+        }, 1000); // 1000 milliseconds = 1 second
 
         return () => clearInterval(interval); // Clean up interval on component unmount
     }, []);
