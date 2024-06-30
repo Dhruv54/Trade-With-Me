@@ -69,15 +69,15 @@ const Home = (user) => {
     };
 
     const fetchData = async () => {
+        const fyeraccesstoken = localStorage.getItem('fyeraccesstoken');
+
         try {
             const response = await fetch('/api/marketstatus', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    'access_token': 'invalid',
-                })
+                body: JSON.stringify(fyeraccesstoken)
             });
             if (response.ok) {
                 const data = await response.json();
@@ -110,7 +110,7 @@ const Home = (user) => {
     useEffect(() => {
         const interval = setInterval(() => {
             fetchData();
-        }, 1000); // 1000 milliseconds = 1 second
+        }, 10000); // 1000 milliseconds = 1 second
 
         return () => clearInterval(interval); // Clean up interval on component unmount
     }, []);

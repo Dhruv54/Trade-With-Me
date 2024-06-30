@@ -24,7 +24,7 @@ async function readTextFromFileAndParseJSON(filePath) {
 const livemarket = async (req, res) => {
     try {
         if (req.method === 'POST') {
-            
+            console.log('dhruv..................',req.body);
             // Initialize FyersAPI
             const fyers = new FyersAPI();
             // Set FyersAPI configurations
@@ -37,7 +37,11 @@ const livemarket = async (req, res) => {
             console.log(data);
             const jsonData = JSON.parse(data);
             console.log(jsonData);
-            fyers.setAccessToken(jsonData.access_token);
+
+           // const fyerstoken = localStorage.getItem('fyeraccesstoken');
+            //console.log('fyeraccesstoken....................',fyerstoken);
+           
+            fyers.setAccessToken(req.body);
 
             // Get today's date
             const today = new Date();
@@ -48,7 +52,7 @@ const livemarket = async (req, res) => {
                 "symbol":"BSE:SENSEX-INDEX",
                 "resolution":"1",
                 "date_format":"1",
-                "range_from":formattedToday,
+                "range_from":"2024-05-29",
                 "range_to":formattedToday,
                 "cont_flag":"1"
             }

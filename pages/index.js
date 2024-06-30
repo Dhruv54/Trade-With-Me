@@ -62,8 +62,11 @@ const Home = (user) => {
         const data = await response.json();
         setFyerAccessToken(data.response.access_token);
 
+        console.log(data);
         // Store fyerstoken in localStorage
         localStorage.setItem('fyerstoken', data.fyerstoken);
+        localStorage.setItem('fyeraccesstoken', data.response.access_token);
+
         console.log('Fyers login success');
         router.push('/home')
       } else {
