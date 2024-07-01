@@ -12,11 +12,12 @@ const Home = (user) => {
     const [prevcandlelow, setprevcandlelow] = useState(null)
 
     const calculatePercentageIncrease = async (candles) => {
-
+        console.log(candles);
          // Get the low price of the previous candle
-         if(data.market_status)
+         if(candles)
         {
-            if(data.market_status.candles.length>0)
+            console.log('hello percentage2');
+            if(candles.length>0)
             {
                 const previousCandleLow = candles[candles.length - 2][3]; // Assuming the low price is at index 3
                 console.log('Previous Candle Low:', previousCandleLow);
@@ -24,6 +25,7 @@ const Home = (user) => {
             }
         }
         else{
+            console.log('hello percentage3');
             return
         }
         // Get the last 20 candles
@@ -44,15 +46,14 @@ const Home = (user) => {
     }
 
     const fetch1hr20Data = async () => {
+        const fyeraccesstoken = localStorage.getItem('fyeraccesstoken');
         try {
             const response = await fetch('/api/1hrcandle', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    'access_token': 'invalid',
-                })
+                body: JSON.stringify(fyeraccesstoken)
             });
             if (response.ok) {
                 const data = await response.json();
@@ -92,13 +93,11 @@ const Home = (user) => {
                         setcurrentPrice(currPrice)
                     }
                 }
-                console.log('Current Price:', currPrice);
-                console.log('prevcandlelow:', prevcandlelow);
                 if(currPrice < prevcandlelow)
-                    {
-                        // make an entry
-                        console.log("currPrice :", currPrice, "prevcandlelow :",prevcandlelow)
-                    }
+                {
+                    // make an entry
+                    console.log("currPrice :", currPrice, "prevcandlelow :",prevcandlelow)
+                }
             } else {
                 console.error('Fetch market status failed:', response.statusText);
             }
@@ -107,18 +106,18 @@ const Home = (user) => {
         }
     };
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            fetchData();
-        }, 10000); // 1000 milliseconds = 1 second
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         fetchData();
+    //     }, 10000); // 1000 milliseconds = 1 second
 
-        return () => clearInterval(interval); // Clean up interval on component unmount
-    }, []);
+    //     return () => clearInterval(interval); // Clean up interval on component unmount
+    // }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
             fetch1hr20Data();
-        }, 3600000); // 10000 milliseconds = 10 second
+        }, 5000); // 10000 milliseconds = 10 second
 
         return () => clearInterval(interval); // Clean up interval on component unmount
     }, []);
