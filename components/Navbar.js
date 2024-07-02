@@ -35,6 +35,7 @@ const Navbar = ({ user, logout }) => {
                 <Link href="/myAccount" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">My Account</Link>
                 <Link href="/orders" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Orders</Link>
                 <Link href="/funds" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Funds</Link>
+                <Link href="/holdings" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Holdings</Link>
                 <Link href={"/login"}onClick={logout} className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</Link>
               </div>
             )}

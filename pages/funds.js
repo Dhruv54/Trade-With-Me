@@ -4,7 +4,7 @@ const Funds = (user) => {
 
   const [fundLimit, setfundLimit] = useState()
 
-  const handlegetfunds = async (e) => {
+  const handlegetfunds = async () => {
     try {
       const response = await fetch('/api/getfunds', {
         method: 'GET',
