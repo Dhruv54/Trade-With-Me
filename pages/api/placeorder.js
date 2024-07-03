@@ -1,5 +1,3 @@
-//eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhcGkubG9naW4uZnllcnMuaW4iLCJpYXQiOjE3MTk4NTEwNjIsImV4cCI6MTcxOTg4MTA2MiwibmJmIjoxNzE5ODUwNDYyLCJhdWQiOiJbXCJ4OjBcIiwgXCJ4OjFcIiwgXCJ4OjJcIiwgXCJkOjFcIiwgXCJkOjJcIiwgXCJ4OjFcIiwgXCJ4OjBcIl0iLCJzdWIiOiJhdXRoX2NvZGUiLCJkaXNwbGF5X25hbWUiOiJZRDAzNjkwIiwib21zIjoiSzEiLCJoc21fa2V5IjoiMTBkMDdiOWFmMWZmZDZkZDQ2OThhYmY3NWMyYzRmMjYyOWU5MjE2YzM5NWNkNDgwY2NiZThmYWMiLCJub25jZSI6IiIsImFwcF9pZCI6IjVTTE44RkhSQkMiLCJ1dWlkIjoiNGU4MWQ5OWNiMTFlNGExZWFhMjUwY2MzZmYwZDA3NTAiLCJpcEFkZHIiOiIwLjAuMC4wIiwic2NvcGUiOiIifQ.YJsiFedy0zYWaRyXy733CIdzhDSOLB4w5tLtRrPo580
-
 const FyersAPI = require("fyers-api-v3").fyersModel;
 
 // Define the API route handler
@@ -34,7 +32,7 @@ const placeorder = async (req, res) => {
 
             // Log the profile response
             console.log(order_status);
-
+s
             // Send success response
             res.status(200).json({ success: true, order_status });
         } else {

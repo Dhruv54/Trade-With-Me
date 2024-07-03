@@ -6,10 +6,7 @@ const Holdings = (user) => {
   const [overall, setoverall] = useState(null)
 
   const handlegetholdings = async () => {
-
     const fyeraccesstoken = localStorage.getItem('fyeraccesstoken');
-
-
     try {
       const response = await fetch('/api/getholdings', {
         method: 'POST',

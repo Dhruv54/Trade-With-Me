@@ -5,12 +5,14 @@ const ProfileInfo = (user) => {
   const [fyerProfile, setfyerProfile] = useState()
 
   const handlefyersgetprofile = async (e) => {
+    const fyeraccesstoken = localStorage.getItem('fyeraccesstoken');
     try {
       const response = await fetch('/api/getprofile', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify(fyeraccesstoken)
       });
      
       if (response.ok) {

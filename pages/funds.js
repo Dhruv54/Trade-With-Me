@@ -5,12 +5,16 @@ const Funds = (user) => {
   const [fundLimit, setfundLimit] = useState()
 
   const handlegetfunds = async () => {
+    
+    const fyeraccesstoken = localStorage.getItem('fyeraccesstoken');
+
     try {
       const response = await fetch('/api/getfunds', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify(fyeraccesstoken)
       });
       if (response.ok) {
         const data = await response.json();
