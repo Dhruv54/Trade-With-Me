@@ -3,7 +3,7 @@ const FyersAPI = require("fyers-api-v3").fyersModel;
 // Define the API route handler
 const getfunds = async (req, res) => {
     try {
-        if (req.method === 'GET') {
+        if (req.method === 'POST') {
 
             // Initialize FyersAPI
             const fyers = new FyersAPI();

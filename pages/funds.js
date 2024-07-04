@@ -10,7 +10,7 @@ const Funds = (user) => {
 
     try {
       const response = await fetch('/api/getfunds', {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },

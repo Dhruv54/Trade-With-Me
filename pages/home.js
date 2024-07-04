@@ -12,7 +12,6 @@ const Home = (user) => {
     const [prevcandlelow, setprevcandlelow] = useState(null)
 
     const calculatePercentageIncrease = async (candles) => {
-        console.log(candles);
          // Get the low price of the previous candle
          if(candles)
         {
@@ -106,13 +105,13 @@ const Home = (user) => {
         }
     };
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         fetchData();
-    //     }, 10000); // 1000 milliseconds = 1 second
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetchData();
+        }, 60000); // 1000 milliseconds = 1 second
 
-    //     return () => clearInterval(interval); // Clean up interval on component unmount
-    // }, []);
+        return () => clearInterval(interval); // Clean up interval on component unmount
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
