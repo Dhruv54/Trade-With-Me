@@ -8,7 +8,7 @@ const ProfileInfo = (user) => {
     const fyeraccesstoken = localStorage.getItem('fyeraccesstoken');
     try {
       const response = await fetch('/api/getprofile', {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
