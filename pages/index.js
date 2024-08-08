@@ -38,9 +38,8 @@ const Home = (user) => {
     }
   };
 
-  const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text);
-    toast.success('Copied to clipboard!');
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(fyersurl);
   };
 
   const handleInputChange = (e) => {
@@ -68,14 +67,8 @@ const Home = (user) => {
         localStorage.setItem('fyerstoken', data.fyerstoken);
         localStorage.setItem('fyeraccesstoken', data.response.access_token);
 
-        // Show token in a pop-up and copy to clipboard
-        toast.info(`Fyerstoken: ${data.fyerstoken}`, {
-          autoClose: false,
-        });
-        copyToClipboard(data.fyerstoken);
-
-        // console.log('Fyers login success');
-        // router.push('/home')
+        console.log('Fyers login success');
+        router.push('/home')
       } else {
         console.error('Fyers login failed:', response.statusText);
       }
@@ -100,7 +93,7 @@ const Home = (user) => {
           {fyersurl && (
             <div className="mb-4">
               <input className="border border-gray-300 rounded px-3 py-2 w-full mb-2 text-black" type="text" value={fyersurl} readOnly />
-              <button onClick={() => copyToClipboard(fyersurl)} className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mb-2 rounded focus:outline-none focus:shadow-outline">
+              <button onClick={copyToClipboard} className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mb-2 rounded focus:outline-none focus:shadow-outline">
                 Copy URL
               </button>
               <textarea className="border border-gray-300 rounded px-3 py-2 w-full mb-2 text-black" value={inputText} onChange={handleInputChange} rows={3} placeholder="Enter text"></textarea>

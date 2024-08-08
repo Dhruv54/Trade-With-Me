@@ -31,7 +31,7 @@ const Signup = () => {
             headers: {
               'Content-Type': 'application/json',
             },
-            // body: JSON.stringify(formData),
+            //body: JSON.stringify(formData),
           });
     
           if (response.ok) {
