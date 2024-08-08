@@ -32,6 +32,7 @@ const placeorder = async (req, res) => {
 
             // Log the profile response
             console.log(order_status);
+s
             // Send success response
             res.status(200).json({ success: true, order_status });
         } else {
