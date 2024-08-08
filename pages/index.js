@@ -69,10 +69,10 @@ const Home = (user) => {
         localStorage.setItem('fyeraccesstoken', data.response.access_token);
 
         // Show token in a pop-up and copy to clipboard
-        toast.info(`Fyerstoken: ${data.fyerstoken}`, {
+        toast.info(`Fyerstoken: ${data.response.access_token}`, {
           autoClose: false,
         });
-        copyToClipboard(data.fyerstoken);
+        copyToClipboard(data.response.access_token);
 
         console.log('Fyers login success');
         // router.push('/home')
